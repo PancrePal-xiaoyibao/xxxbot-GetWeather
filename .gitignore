@@ -12,8 +12,11 @@ test_jwt.py
 
 # Python缓存文件
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
 
 # 日志文件
 *.log
