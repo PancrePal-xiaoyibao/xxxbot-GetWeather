@@ -19,7 +19,7 @@ def check_and_install_dependencies():
     """检查并安装必要的依赖"""
     required_packages = {
         'aiohttp': 'aiohttp',
-        'PyJWT': 'jwt',
+        'PyJWT': 'PyJWT',
         'cryptography': 'cryptography',
         'jieba': 'jieba'
     }
