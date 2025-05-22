@@ -30,8 +30,15 @@ openssl pkey -pubout -in ed25519-private.pem > ed25519-public.pem
 cat ./ed25519-private.pem 把完整内容填写到toml文件中
 ```
 
+### 3. JWT 生成与缓存机制
+JWT token 的生成和缓存机制如下：
+- **生成逻辑**：JWT token 使用 `EdDSA` 算法生成，包含以下声明：
+  - `iat` (Issued At)：JWT 的发行时间，设置为当前时间减去 30 秒，以应对潜在的时钟偏差。
+  - `exp` (Expiration Time)：JWT 的过期时间，默认为当前时间加上 15 分钟（900 秒）。
+  - `sub` (Subject)：JWT 的主题，设置为项目 ID。
+- **缓存机制**：生成的 JWT token 会被缓存，并在过期前 5 分钟自动刷新。如果缓存的 token 仍然有效且不需要刷新，则直接返回缓存的 token。
 
-### 3. 配置插件
+### 5. 配置插件
 
 1. 打开 `config.toml` 文件
 2. 将私钥内容设置为 `api-key` 的值：
